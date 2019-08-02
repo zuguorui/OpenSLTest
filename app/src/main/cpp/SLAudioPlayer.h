@@ -10,13 +10,22 @@
 #include <SLES/OpenSLES.h>
 #include <SLES/OpenSLES_Android.h>
 
+#define BUFFER_LEN 128
+
 
 class SLAudioPlayer {
 public:
+    SLAudioPlayer();
+    ~SLAudioPlayer();
     bool createEngine();
     bool createPlayer();
+    bool play();
+    bool stop();
+
+    bool destroy();
 
 private:
+
     // engine interfaces
     SLObjectItf engineObject = NULL;
     SLEngineItf engineEngine;
@@ -31,8 +40,6 @@ private:
     SLVolumeItf bqPlayerVolume;
     SLmilliHertz bqPlayerSampleRate = 0;
 
-    static const SLEnvironmentalReverbSettings reverbSettings =
-            SL_I3DL2_ENVIRONMENT_PRESET_STONECORRIDOR;
 };
 
 
